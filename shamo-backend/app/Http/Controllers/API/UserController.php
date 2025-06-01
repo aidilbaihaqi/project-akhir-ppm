@@ -61,7 +61,7 @@ class UserController extends Controller
             if(!Auth::attempt($credentials)) {
                 return ResponseFormatter::error([
                     'message' => 'Unauthorized',
-                ], 'Authentication Failed', 500);
+                ], 'Authentication Failed', 401);
             }
             
             $user = User::where('email', $request->email)->first();
@@ -89,4 +89,19 @@ class UserController extends Controller
     {
         return ResponseFormatter::success($request->user(), 'Data profile user berhasil diambil');
     }
+
+    public function updateProfile(Request $request)
+    {
+        $data = $request->all();
+
+        $user = Auth::user();
+        if (!$user) {
+            return ResponseFormatter::error(null, 'Unauthorized', 401);
+        }
+
+        $user->update($data);
+
+        return ResponseFormatter::success($user, 'Profile berhasil diubah');
+    }
+
 }
