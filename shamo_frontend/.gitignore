@@ -33,6 +33,11 @@ migrate_working_dir/
 .pub/
 /build/
 
+# Flutter ignore platform build
+/linux
+/macos
+/windows
+
 # Symbolication related
 app.*.symbols
 
