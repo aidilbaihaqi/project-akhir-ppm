@@ -13,11 +13,10 @@ export default {
 
     theme: {
         extend: {
-            screens: {
-                fontFamily: {
-                    sans: ['Figtree', ...defaultTheme.fontFamily.sans],
-                },
-            }
+            fontFamily: {
+                sans: ['Figtree', ...defaultTheme.fontFamily.sans],
+            },
+            screens: {},
         },
     },
 
