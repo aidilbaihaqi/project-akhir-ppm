@@ -39,8 +39,6 @@ class _SignInPage extends State<SignInPage> {
       setState(() {
         isLoading = true;
       });
-      
-      print('Email:${emailController.text}, Password:${passwordController.text}');
 
       final result = await authProvider.login(
         email: emailController.text,
