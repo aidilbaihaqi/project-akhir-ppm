@@ -1,0 +1,89 @@
+import 'package:flutter/material.dart';
+
+import 'package:shamo_frontend/models/product_model.dart';
+import 'package:shamo_frontend/screens/product_detail/detail.dart';
+
+import 'package:shamo_frontend/theme.dart';
+
+class ProductCard extends StatelessWidget {
+  const ProductCard({
+    super.key,
+    required this.product,
+  });
+
+  final ProductModel product;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => DetailProductPage(product: product),
+          ),
+        );
+      },
+      child: Container(
+        width: 215.0,
+        height: 275.0,
+        margin: EdgeInsets.only(right: defaultMargin),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20.0),
+          color: Colors.white,
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(
+              height: defaultMargin,
+            ),
+            Image.network(
+              product.galleries![0].url,
+              width: 215.0,
+              height: 150.0,
+              fit: BoxFit.cover,
+            ),
+            Container(
+              margin: const EdgeInsets.symmetric(horizontal: 20.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    product.category!.name,
+                    style: secondaryTextStyle.copyWith(
+                      fontSize: 12.0,
+                      fontWeight: regular,
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 6.0,
+                  ),
+                  Text(
+                    product.name!,
+                    style: blackTextStyle.copyWith(
+                      fontSize: 18.0,
+                      fontWeight: semibold,
+                    ),
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 1,
+                  ),
+                  const SizedBox(
+                    height: 6.0,
+                  ),
+                  Text(
+                    '\$ ${product.price}',
+                    style: priceTextStyle.copyWith(
+                      fontSize: 14,
+                      fontWeight: medium,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
