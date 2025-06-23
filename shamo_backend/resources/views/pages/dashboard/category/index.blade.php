@@ -36,12 +36,12 @@
             </div>
             <div class="shadow overflow-hidden sm:rounded-md">
                 <div class="px-4 py-5 bg-white sm:p-6">
-                    <table id="crudTable">
+                    <table id="crudTable" class="table table-striped table-bordered">
                         <thead>
                         <tr>
                             <th>ID</th>
                             <th>Nama</th>
-                            <th>Aksi</th>
+                            <th class="text-end">Aksi</th>
                         </tr>
                         </thead>
                         <tbody></tbody>

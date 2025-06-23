@@ -38,20 +38,26 @@
             </div>
             <div class="shadow overflow-hidden sm:rounded-md">
                 <div class="px-4 py-5 bg-white sm:p-6">
-                    <table id="crudTable">
+                    <table id="crudTable" class="table table-striped table-bordered">
                         <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Nama</th>
-                            <th>Kategori</th>
-                            <th>Harga</th>
-                            <th>Aksi</th>
-                        </tr>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nama</th>
+                                <th>Kategori</th>
+                                <th>Harga</th>
+                                <th class="text-end">Aksi</th>
+                            </tr>
                         </thead>
                         <tbody></tbody>
                     </table>
                 </div>
             </div>
         </div>
+    </div>
+    <div class="hidden">
+        <span class="bg-blue-700 hover:bg-blue-800 border-blue-700"></span>
+        <span class="bg-gray-700 hover:bg-gray-800 border-gray-700"></span>
+        <span class="bg-red-500 hover:bg-red-600 border-red-500"></span>
+        <span class="text-white rounded-md px-2 py-1 m-2 transition duration-500 ease select-none focus:outline-none focus:shadow-outline"></span>
     </div>
 </x-app-layout>

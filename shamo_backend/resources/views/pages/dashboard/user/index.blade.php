@@ -33,7 +33,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="shadow overflow-hidden sm:rounded-md">
                 <div class="px-4 py-5 bg-white sm:p-6">
-                    <table id="crudTable">
+                    <table id="crudTable" class="table table-striped table-bordered">
                         <thead>
                         <tr>
                             <th>ID</th>
