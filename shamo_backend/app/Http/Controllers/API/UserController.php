@@ -9,8 +9,7 @@ use App\Helpers\ResponseFormatter;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
-use Laravel\Fortify\Rules\Password;
+use Illuminate\Validation\Rules\Password;
 
 class UserController extends Controller
 {
@@ -53,7 +52,11 @@ class UserController extends Controller
             return ResponseFormatter::success([
                 'access_token' => $tokenResult,
                 'token_type' => 'Bearer',
-                'user' => $user
+                'user' => [
+                    'id' => $user->id,
+                    'name' => $user->name,
+                    'email' => $user->email,
+                ]
             ],'Authenticated');
         } catch (Exception $error) {
             return ResponseFormatter::error([
@@ -75,7 +78,7 @@ class UserController extends Controller
                 'name' => ['required', 'string', 'max:255'],
                 'username' => ['required', 'string', 'max:255', 'unique:users'],
                 'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-                'password' => ['required', 'string', new Password]
+                'password' => ['required', 'string', Password::min(8)]
             ]);
 
             User::create([
@@ -92,7 +95,12 @@ class UserController extends Controller
             return ResponseFormatter::success([
                 'access_token' => $tokenResult,
                 'token_type' => 'Bearer',
-                'user' => $user
+                'user' => [
+                    'id' => $user->id,
+                    'name' => $user->name,
+                    'email' => $user->email,
+                    'username' => $user->username,            
+                ]
             ],'User Registered');
         } catch (Exception $error) {
             return ResponseFormatter::error([
@@ -113,6 +121,7 @@ class UserController extends Controller
     {
         $data = $request->all();
 
+        /** @var User $user */
         $user = Auth::user();
         $user->update($data);
 
