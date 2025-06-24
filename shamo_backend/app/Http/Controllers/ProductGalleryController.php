@@ -32,7 +32,7 @@ class ProductGalleryController extends Controller
                         </form>';
                 })
                 ->editColumn('url', function ($item) {
-                    return '<img style="max-width: 150px;" src="'. $item->url .'"/>';
+                    return '<img style="max-width: 150px;" src="' . $item->url . '"/>';
                 })
                 ->editColumn('is_featured', function ($item) {
                     return $item->is_featured ? 'Yes' : 'No';
@@ -43,7 +43,7 @@ class ProductGalleryController extends Controller
 
         return view('pages.dashboard.gallery.index', compact('product'));
     }
-    
+
     /**
      * Show the form for creating a new resource.
      *
@@ -64,20 +64,21 @@ class ProductGalleryController extends Controller
     {
         $files = $request->file('files');
 
-        if($request->hasFile('files'))
-        {
+        if ($request->hasFile('files')) {
             foreach ($files as $file) {
-                $path = $file->store('public/gallery');
+                // Simpan di storage/app/public/gallery
+                $path = $file->store('gallery', 'public');
 
                 ProductGallery::create([
                     'products_id' => $product->id,
-                    'url' => $path
+                    'url' => $path, // simpan 'gallery/filename.jpg'
                 ]);
             }
         }
 
         return redirect()->route('dashboard.product.gallery.index', $product->id);
     }
+
 
     /**
      * Display the specified resource.
